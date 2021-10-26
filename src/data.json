@@ -1,0 +1,64 @@
+{
+  "hotels": [
+    {
+      "id": "1",
+      "name": "Regency1",
+      "price": "125",
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/289252155.jpg?k=ea8db39edf8e790c445b9cc35e135841340a872fb3b6f3dbb2369966c282b0a0&o=&hp=1",
+      "rating": "3",
+      "locationCity": "Rome",
+      "locationCountery": "Italy",
+      "summary": "Proin eleifend odio vitae hendrerit dapibus. Vestibulum blandit turpis ac vestibulum. Aenean et libero vitae mauris ultrices facilisis. Praesent volutpat pharetra lorem eu faucibus. Vestibulum eget aliquam ligula, id finibus justo. In sagittis laoreet sapien mollis rutrum. Nunc ligula sapien, fringilla vitae urna quis, rhoncus blandit purus."
+    },
+    {
+      "id": "2",
+      "name": "Regency2",
+      "price": "150",
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/289252155.jpg?k=ea8db39edf8e790c445b9cc35e135841340a872fb3b6f3dbb2369966c282b0a0&o=&hp=1",
+      "rating": "4",
+      "locationCity": "Paris",
+      "locationCountery": "France",
+      "summary": "Proin eleifend odio vitae hendrerit dapibus. Vestibulum blandit turpis ac enim finibus, vitae malesuada Aenean et libero vitae mauris ultrices facilisis. Praesent volutpat pharetra lorem eu faucibus. Vestibulum eget aliquam ligula, id finibus justo. In sagittis laoreet sapien mollis rutrum. Nunc ligula sapien, fringilla vitae urna quis, rhoncus blandit purus."
+    },
+    {
+      "id": "3",
+      "name": "Regency3",
+      "price": "175",
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/289252155.jpg?k=ea8db39edf8e790c445b9cc35e135841340a872fb3b6f3dbb2369966c282b0a0&o=&hp=1",
+      "rating": "4",
+      "locationCity": "Barcelona",
+      "locationCountery": "Spain",
+      "summary": "Proin eleifend odio vitae hendrerit dapibus. Vestibulum blandit turpis ac enim finibus, vitae  risus vestibulum. Aenean et libero vitae mauris ultrices facilisis. Praesent volutpat pharetra lorem eu faucibus. Vestibulum eget aliquam ligula, id finibus justo. In sagittis laoreet sapien mollis rutrum. Nunc ligula sapien, fringilla vitae urna quis, rhoncus blandit purus."
+    },
+    {
+      "id": "4",
+      "name": "Regency4",
+      "price": "200",
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/289252155.jpg?k=ea8db39edf8e790c445b9cc35e135841340a872fb3b6f3dbb2369966c282b0a0&o=&hp=1",
+      "rating": "5",
+      "locationCity": "London",
+      "locationCountery": "United Kingdom",
+      "summary": "Proin eleifend odio vitae hendrerit dapibus. Vestibulum  turpis ac enim finibus, vitae malesuada risus vestibulum. Aenean et libero vitae mauris ultrices facilisis. Praesent volutpat pharetra lorem eu faucibus. Vestibulum eget aliquam ligula, id finibus justo. In sagittis laoreet sapien mollis rutrum. Nunc ligula sapien, fringilla vitae urna quis, rhoncus blandit purus."
+    },
+    {
+      "id": "5",
+      "name": "Regency5",
+      "price": "250",
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/289252155.jpg?k=ea8db39edf8e790c445b9cc35e135841340a872fb3b6f3dbb2369966c282b0a0&o=&hp=1",
+      "rating": "4",
+      "locationCity": "Moscow",
+      "locationCountery": "Russia",
+      "summary": "Proin eleifend odio vitae  dapibus. Vestibulum blandit turpis ac enim finibus, vitae malesuada risus vestibulum. Aenean et libero vitae mauris ultrices facilisis. Praesent volutpat pharetra lorem eu faucibus. Vestibulum eget aliquam ligula, id finibus justo. In sagittis laoreet sapien mollis rutrum. Nunc ligula sapien, fringilla vitae urna quis, rhoncus blandit purus."
+    },
+    {
+      "id": "6",
+      "name": "Regency6",
+      "price": "300",
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/69465709.jpg?k=7dad9c0d284368e71b9c13005cfffecbba1e09a1c0d6524af1aebed67e71ec89&o=&hp=1",
+      "rating": "5",
+      "locationCity": "Wellington",
+      "locationCountery": "New Zealand",
+      "summary": "Proin eleifend odio vitae hendrerit . Vestibulum blandit turpis ac enim finibus, vitae malesuada risus vestibulum. Aenean et libero vitae mauris ultrices facilisis. Praesent volutpat pharetra lorem eu faucibus. Vestibulum eget aliquam ligula, id finibus justo. In sagittis laoreet sapien mollis rutrum. Nunc ligula sapien, fringilla vitae urna quis, rhoncus blandit purus."
+    }
+  ]
+}
