@@ -20,6 +20,9 @@
       <li class="links">
         <router-link to="/payment">Payment</router-link>
       </li>
+      <li class="links">
+        <router-link to="/form">Form</router-link>
+      </li>
     </ul>
   </nav>
 </template>
