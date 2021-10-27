@@ -17,6 +17,9 @@
       <li class="links">
         <router-link to="/about">About</router-link>
       </li>
+      <li class="links">
+        <router-link to="/payment">Payment</router-link>
+      </li>
     </ul>
   </nav>
 </template>
