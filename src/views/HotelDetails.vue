@@ -7,6 +7,7 @@
       </h1>
 
       <div class="hotel-details">
+        <!-- TODO: BOOTSTRAP CAROUSEL MIGHT BE ADD HERE -->
         <img :src="hotel.image" :alt="hotel.name" />
         <p>$ {{ hotel.price }}</p>
         <p>Rating: {{ hotel.rating }}</p>
