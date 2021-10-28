@@ -28,7 +28,7 @@
               params: { id: hotel.id },
             }"
           >
-            <h2>Details</h2>
+            <div class="btn">View Hotel</div>
           </router-link>
         </button>
       </div>

@@ -1,9 +1,16 @@
 <template>
   <div class="container">
     <div>
+      <!-- Button trigger modal -->
       <b-button id="show-btn" @click="showPayment">Pay</b-button>
+      <!-- Modal -->
 
-      <b-modal id="my-modal" hide-footer title="Payment Processing">
+      <b-modal
+        class="modal-dialog modal-dialog-centered"
+        id="my-modal"
+        hide-footer
+        title="Payment Processing"
+      >
         <div class="d-block text-center">
           <div class="d-flex justify-content-center">
             <div class="spinner-border" role="status">

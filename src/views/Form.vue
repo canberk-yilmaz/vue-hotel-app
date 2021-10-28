@@ -1,132 +1,108 @@
 <template>
   <div class="container">
-    <!-- <div class="container">
-      <b-card bg-variant="light">
-        <b-form-group
-          label-cols-lg="3"
-          label="Shipping Address"
-          label-size="lg"
-          label-class="font-weight-bold pt-0"
-          class="mb-0"
-        >
-          <b-form-group
-            label="Street:"
-            label-for="nested-street"
-            label-cols-sm="3"
-            label-align-sm="right"
-          >
-            <b-form-input id="nested-street"></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="City:"
-            label-for="nested-city"
-            label-cols-sm="3"
-            label-align-sm="right"
-          >
-            <b-form-input id="nested-city"></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="State:"
-            label-for="nested-state"
-            label-cols-sm="3"
-            label-align-sm="right"
-          >
-            <b-form-input id="nested-state"></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="Country:"
-            label-for="nested-country"
-            label-cols-sm="3"
-            label-align-sm="right"
-          >
-            <b-form-input id="nested-country"></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="Ship via:"
-            label-cols-sm="3"
-            label-align-sm="right"
-            class="mb-0"
-            v-slot="{ ariaDescribedby }"
-          >
-            <b-form-radio-group
-              class="pt-2"
-              :options="['Air', 'Courier', 'Mail']"
-              :aria-describedby="ariaDescribedby"
-            ></b-form-radio-group>
-          </b-form-group>
-        </b-form-group>
-      </b-card>
-    </div> -->
-
+    <!-- Name Label & Input -->
     <div>
-      <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
-        <label class="form__label">Name</label>
-        <input class="form__input" v-model.trim="$v.name.$model" />
+      <div
+        class="form-group"
+        :class="{ 'form-group--error': $v.firstName.$error }"
+      >
+        <label class="form__label">First Name</label>
+        <input class="form__input" v-model.trim="$v.firstName.$model" />
       </div>
-      <div class="error" v-if="!$v.name.required">Field is required</div>
-      <div class="error" v-if="!$v.name.minLength">
-        Name must have at least {{ $v.name.$params.minLength.min }} letters.
+      <div class="error" v-if="!$v.firstName.required && $v.firstName.dirty">
+        Field is required
       </div>
-      <div class="error" v-if="!$v.name.maxLength">
-        Name must have maximum of {{ $v.name.$params.maxLength.max }} letters.
-      </div>
-      <div>
-        {{ $v.name.$model }}
+      <div class="error" v-if="!$v.firstName.minLength">
+        Name must have at least
+        {{ $v.firstName.$params.minLength.min }} letters.
       </div>
 
-      <div class="form-group" :class="{ 'form-group--error': $v.age.$error }">
-        <label class="form__label">Age</label>
-        <input class="form__input" v-model.trim.lazy="$v.age.$model" />
+      <div>
+        <div
+          class="form-group"
+          :class="{ 'form-group--error': $v.lastName.$error }"
+        >
+          <label class="form__label">Last Name</label>
+          <input class="form__input" v-model.trim="$v.lastName.$model" />
+        </div>
+        <div class="error" v-if="!$v.lastName.required && $v.lastName.dirty">
+          Field is required
+        </div>
+        <div class="error" v-if="!$v.lastName.minLength">
+          Name must have at least
+          {{ $v.lastName.$params.minLength.min }} letters.
+        </div>
+
+        <!-- Age Adult Label & Input -->
+
+        <div
+          class="form-group"
+          :class="{ 'form-group--error': $v.ageAdult.$error }"
+        >
+          <label class="form__label">Age</label>
+          <input class="form__input" v-model.trim.lazy="$v.ageAdult.$model" />
+        </div>
+        <div class="error" v-if="!$v.ageAdult.minValue">
+          Must be above {{ $v.ageAdult.$params.minValue.min }}
+        </div>
       </div>
-      <div class="error" v-if="!$v.age.between">
-        Must be between {{ $v.age.$params.between.min }} and
-        {{ $v.age.$params.between.max }}
+
+      <!-- Age Child Label & Input -->
+      <div>
+        <div
+          class="form-group"
+          :class="{ 'form-group--error': $v.ageChild.$error }"
+        >
+          <label class="form__label">Age</label>
+          <input class="form__input" v-model.trim.lazy="$v.ageChild.$model" />
+        </div>
+        <div class="error" v-if="!$v.ageChild.minValue">
+          Must be above {{ $v.ageChild.$params.minValue.min }}
+        </div>
       </div>
-      <span tabindex="0">Blur to see changes</span>
+
+      <!-- Hes Code Label & Input -->
+      <div>
+        <div
+          class="form-group"
+          :class="{ 'form-group--error': $v.hesCode.$error }"
+        >
+          <label class="form__label">HES Code</label>
+          <input class="form__input" v-model.trim.lazy="$v.hesCode.$model" />
+        </div>
+        <div class="error" v-if="!$v.hesCode.minLength">
+          Must be 10 characters {{ $v.hesCode.$params.minLength.min }}
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- TODO: -->
+  <!-- 
+    email, firstName, lastName, Age, Hes Code ( custom validation), Turkish Citizen Number (If Turkish) phone number (custom)
+
+   -->
 </template>
 
 <script>
-import {
-  required,
-  minLength,
-  between,
-  maxLength,
-} from "vuelidate/lib/validators";
-
-import { global } from "@/mixins/global.js";
+import validationMixin from "@/mixins/validationMixin.js";
 
 export default {
   data() {
     return {
-      name: "",
-      age: 0,
+      firstName: "",
+      lastName: "",
+      ageAdult: "",
+      ageChild: "",
+      hesCode: "",
     };
   },
-  mixins: [global],
-  validations: {
-    name: {
-      required,
-      minLength: minLength(6),
-      maxLength: maxLength(12),
-    },
-    age: {
-      between: between(20, 30),
-    },
-  },
+  mixins: [validationMixin],
 };
 </script>
 
-<style scoped>
-/* label {
-  text-align: right;
-  clear: both;
-  float: left;
-  margin-right: 15px;
-} */
+<style>
+.form-group--error .form__input {
+  border: 1px solid red;
+}
 </style>
