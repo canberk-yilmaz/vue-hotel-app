@@ -2,13 +2,18 @@ import {
   required,
   minLength,
   minValue,
-  helpers,
   maxLength,
+  helpers,
 } from "vuelidate/lib/validators";
 
-const alpha = helpers.regex(/^[a-zA-Z]*$/);
+// export function hesLetterValidation(value) {
+//   return /^[a-zA-Z].[a-zA-Z].-....-../.test(value);
+// }
 
-const hesCodeValid = (value) => value[0] == alpha && value[2] == alpha;
+const hesCodeValidation = helpers.regex(
+  "hesCodeValidation",
+  /^[a-zA-Z].[a-zA-Z].-....-../
+);
 
 const validationMixin = {
   validations: {
@@ -27,9 +32,10 @@ const validationMixin = {
       minValue: minValue(6),
     },
     hesCode: {
-      hesCodeValid,
-      minLength: minLength(10),
-      maxLength: maxLength(10),
+      required,
+      hesCodeValidation,
+      minLength: minLength(12),
+      maxLength: maxLength(12),
     },
   },
   created() {

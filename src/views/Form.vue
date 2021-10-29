@@ -6,7 +6,7 @@
         class="form-group"
         :class="{ 'form-group--error': $v.firstName.$error }"
       >
-        <label class="form__label">First Name</label>
+        <label class="form__label font-bold text-grey">First Name</label>
         <input class="form__input" v-model.trim="$v.firstName.$model" />
       </div>
       <div class="error" v-if="!$v.firstName.required && $v.firstName.dirty">
@@ -22,7 +22,7 @@
           class="form-group"
           :class="{ 'form-group--error': $v.lastName.$error }"
         >
-          <label class="form__label">Last Name</label>
+          <label class="form__label font-bold text-grey">Last Name</label>
           <input class="form__input" v-model.trim="$v.lastName.$model" />
         </div>
         <div class="error" v-if="!$v.lastName.required && $v.lastName.dirty">
@@ -39,7 +39,7 @@
           class="form-group"
           :class="{ 'form-group--error': $v.ageAdult.$error }"
         >
-          <label class="form__label">Age</label>
+          <label class="form__label font-bold text-grey">Age</label>
           <input class="form__input" v-model.trim.lazy="$v.ageAdult.$model" />
         </div>
         <div class="error" v-if="!$v.ageAdult.minValue">
@@ -70,8 +70,12 @@
           <label class="form__label">HES Code</label>
           <input class="form__input" v-model.trim.lazy="$v.hesCode.$model" />
         </div>
-        <div class="error" v-if="!$v.hesCode.minLength">
-          Must be 10 characters {{ $v.hesCode.$params.minLength.min }}
+
+        <div>
+          <!-- {{ $v.hesCode }} -->
+          <li v-for="(item, i) in $v.hesCode" :key="i">
+            {{ (item, i) }} : {{ item }}
+          </li>
         </div>
       </div>
     </div>
@@ -104,5 +108,9 @@ export default {
 <style>
 .form-group--error .form__input {
   border: 1px solid red;
+}
+
+.form__label {
+  width: 7rem;
 }
 </style>
