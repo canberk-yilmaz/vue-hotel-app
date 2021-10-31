@@ -1,26 +1,29 @@
 <template>
-  <div class="home">
-    <h1>All Hotels</h1>
-    <div class="hotels">
-      <div v-for="hotel in hotels" :key="hotel.id">
-        <router-link
-          :to="{
-            name: 'HotelDetails',
-            params: { id: hotel.id },
-          }"
-        >
-          <h2>{{ hotel.name }}</h2>
-        </router-link>
-        <figure>
+  <div>
+    <div class="mt-0 banner-container">
+      <img class="banner" src="@/assets/hotel-banner.jpg" alt="" />
+    </div>
+    <b-container class="hotels">
+      <div class="hotel-container" v-for="hotel in hotels" :key="hotel.id">
+        <div class="img-container">
           <router-link
             :to="{
               name: 'HotelDetails',
               params: { id: hotel.id },
             }"
           >
-            <img :src="hotel.image" :alt="hotel.id" />
+            <img class="hotel-image" :src="hotel.image" :alt="hotel.id" />
           </router-link>
-        </figure>
+        </div>
+        <router-link
+          :to="{
+            name: 'HotelDetails',
+            params: { id: hotel.id },
+          }"
+        >
+          <h2 class="name">{{ hotel.name }}</h2>
+        </router-link>
+
         <button>
           <router-link
             :to="{
@@ -32,7 +35,7 @@
           </router-link>
         </button>
       </div>
-    </div>
+    </b-container>
   </div>
 </template>
 
@@ -49,15 +52,60 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-img {
-  max-width: 200px;
-}
 .hotels {
+  background-color: salmon;
+  border-radius: 50px;
+  height: 100%;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hotel-container {
+  margin: 1rem;
+  width: 100%;
+  height: 20%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background-color: pink;
+  border-radius: 50px;
+}
+
+.img-container {
+  width: 390px;
+  height: 293px;
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+.hotel-image {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50px;
+  padding: 15px;
+}
+
+.name {
+  color: white;
+}
+
+.banner {
+  width: 100vw;
+  opacity: 50%;
+  background-color: white;
+  color: white;
+}
+
+.banner-container {
+  background-color: white;
+}
+
+.container {
+  transform: translate(0, -20rem);
 }
 </style>
