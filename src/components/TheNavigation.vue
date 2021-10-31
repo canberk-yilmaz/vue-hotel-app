@@ -1,19 +1,35 @@
 <template>
-  <nav id="nav">
-    <p class="logo">Canberk's Hotel App</p>
-    <ul class="nav-links">
+  <b-nav
+    id="nav"
+    class="navbar navbar-expand-lg ftco-navbar-light container d-flex"
+  >
+    <div class="align-middle">
+      <div class="logo text-center align-middle">Hotel App</div>
+    </div>
+    <div class="container"></div>
+    <ul class="nav-links align-items-center">
       <li class="links">
         <router-link to="/">Home</router-link>
       </li>
-      <li v-for="hotel in hotels" :key="hotel.name" class="links">
-        <router-link
-          :to="{
-            name: 'HotelDetails',
-            params: { id: hotel.id },
-          }"
-          >{{ hotel.name }}</router-link
+      <b-nav-item-dropdown class="links" text="Hotels" right>
+        <!-- <b-dropdown-item href="#">EN</b-dropdown-item>
+        <b-dropdown-item href="#">ES</b-dropdown-item>
+        <b-dropdown-item href="#">RU</b-dropdown-item>
+        <b-dropdown-item href="#">FA</b-dropdown-item> -->
+        <b-dropdown-item
+          v-for="hotel in hotels"
+          :key="hotel.name"
+          class="links d-flex align-items-center"
         >
-      </li>
+          <router-link
+            :to="{
+              name: 'HotelDetails',
+              params: { id: hotel.id },
+            }"
+            >{{ hotel.name }}</router-link
+          >
+        </b-dropdown-item>
+      </b-nav-item-dropdown>
       <li class="links">
         <router-link to="/about">About</router-link>
       </li>
@@ -21,10 +37,10 @@
         <router-link to="/payment">Payment</router-link>
       </li>
       <li class="links">
-        <router-link to="/form">Form</router-link>
+        <router-link to="/reservation">Reservation</router-link>
       </li>
     </ul>
-  </nav>
+  </b-nav>
 </template>
 
 <script>
@@ -47,22 +63,16 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
   width: 100%;
   top: 0;
-  margin-bottom: 50px;
   background-color: white;
   border-bottom: 1px solid grey;
-  z-index: 1;
-  overflow: hidden;
+  position: sticky;
+  z-index: 999;
 }
-#nav a {
-  color: #2c3e50;
-  text-decoration: none;
-  font-weight: bold;
-}
-#nav a.vue-school-active-class {
-  color: #ab26ab;
+
+#nav a.router-link-exact-active {
+  color: #00a2ff;
 }
 .nav-links {
   display: flex;
@@ -70,13 +80,23 @@ export default {
 .links {
   padding-right: 20px;
   list-style: none;
+  font-size: 1.5rem;
 }
 .links:hover {
   text-decoration: underline;
+  font-size: 2rem;
 }
 .logo {
-  font-size: 20px;
-  color: purple;
+  font-size: 1.5rem;
+  color: #00a2ff;
   font-weight: bold;
+}
+.container {
+  width: 100%;
+  padding-right: 15 px;
+  padding-left: 15 px;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
 }
 </style>
