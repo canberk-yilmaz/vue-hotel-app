@@ -1,18 +1,42 @@
 <template>
   <div class="mt-4">
-    <div class="main-img"></div>
     <div class="container">
       <h1 class="title">
         {{ hotel.name }}
       </h1>
       <div class="row align-items-start">
         <div class="hotels mb-3 mb-lg-0 col-lg-8">
+          <!-- CAROUSEL START -->
+          <div class="container">
+            <b-carousel
+              id="carousel-1"
+              v-model="slide"
+              :interval="4000"
+              controls
+              indicators
+              background="#ababab"
+              img-width="1024"
+              img-height="480"
+              style="text-shadow: 1px 1px 2px #333"
+              @sliding-start="onSlideStart"
+              @sliding-end="onSlideEnd"
+            >
+              <!-- Text slides with image -->
+              <b-carousel-slide
+                v-for="(img, i) in hotel.images"
+                :key="img"
+                :img-src="require(`@/assets/${hotel.images[i]}`)"
+              ></b-carousel-slide>
+            </b-carousel>
+          </div>
+
+          <!-- CAROUSEL END -->
+
           <div class="hotel-details">
-            <!-- TODO: BOOTSTRAP CAROUSEL MIGHT BE ADD HERE -->
-            <div class="img-container">
-              <img :src="hotel.image" :alt="hotel.name" />
-            </div>
-            <div>Rating: {{ hotel.rating }}</div>
+            <b-badge class="rating" variant="primary">
+              Rating: <b-badge variant="light">{{ hotel.rating }}</b-badge>
+            </b-badge>
+
             <div class="d-flex align-left mt-5">{{ hotel.summary }}</div>
             <p>
               {{ hotel.location }}
@@ -75,6 +99,7 @@ export default {
       checkInDate: null,
       checkOutDate: null,
       rooms: 0,
+      slide: 0,
     };
   },
   computed: {
@@ -94,6 +119,12 @@ export default {
       const checkIn = Date.parse(day1);
       const checkOut = Date.parse(day2);
       return (checkOut - checkIn) / 86400000;
+    },
+    onSlideStart() {
+      this.sliding = true;
+    },
+    onSlideEnd() {
+      this.sliding = false;
     },
   },
 };
@@ -175,5 +206,10 @@ p {
 .room-input {
   width: 3rem;
   text-align: center;
+}
+
+.rating {
+  font-size: 1.2rem;
+  margin-top: 1rem;
 }
 </style>
