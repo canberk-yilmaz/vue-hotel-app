@@ -8,19 +8,22 @@
           <div>
             <b-form
               class="form-group"
-              :class="{ 'form-group--error': $v.name.$error }"
+              :class="{ 'form-group--error': $v.firstName.$error }"
             >
               <label class="form__label font-bold text-grey">Name</label>
               <b-form-input
                 placeholder="JOHN DOE"
                 class="form__input"
-                v-model.trim="$v.name.$model"
+                v-model.trim="$v.firstName.$model"
               />
             </b-form>
-            <div class="error" v-if="!$v.firstName.required && $v.name.dirty">
+            <div
+              class="error"
+              v-if="!$v.firstName.required && $v.firstName.dirty"
+            >
               Field is required
             </div>
-            <div class="error" v-if="!$v.name.minLength">
+            <div class="error" v-if="!$v.firstName.minLength">
               Name must have at least
               {{ $v.name.$params.minLength.min }} letters.
             </div>
@@ -131,7 +134,8 @@ export default {
   },
   data() {
     return {
-      name: null,
+      firstName: null,
+      lastName: null,
       age: null,
       hesCode: "",
       tcNumber: "",

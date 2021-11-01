@@ -57,18 +57,15 @@ const validationMixin = {
   validations: {
     firstName: {
       required,
-      minLength: minLength(4),
-    },
-    name: {
-      required,
-      minLength: minLength(4),
+      minLength: minLength(3),
     },
     lastName: {
       required,
-      minLength: minLength(4),
+      minLength: minLength(2),
     },
     age: {
       minValue: minValue(6),
+      required,
     },
     hesCode: {
       required,
@@ -83,9 +80,12 @@ const validationMixin = {
     },
     phoneNumber: {
       required,
+      minLength: minLength(10),
+      maxLength: maxLength(10),
     },
     email: {
       email,
+      required,
     },
   },
   created() {},

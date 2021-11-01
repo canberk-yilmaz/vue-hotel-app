@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <b-row class="formContainer d-flex flex-column">
       <!-- Name Label & Input -->
       <div>
@@ -14,7 +14,10 @@
             v-model.trim="$v.firstName.$model"
           />
         </b-form>
-        <div class="error" v-if="!$v.firstName.required && $v.firstName.dirty">
+        <div
+          class="error"
+          v-if="!$v.firstName.required && $v.firstName.invalid"
+        >
           Field is required
         </div>
         <div class="error" v-if="!$v.firstName.minLength">
@@ -73,6 +76,10 @@
             v-model.trim.lazy="$v.email.$model"
           />
         </div>
+        <span v-if="!$v.email.required && $v.email.$anyDirty"
+          >Email is required</span
+        >
+        <span v-if="!$v.email.email">Email is invalid</span>
       </div>
 
       <!-- Hes Code Label & Input -->
@@ -88,6 +95,13 @@
             v-model.trim.lazy="$v.hesCode.$model"
           />
         </div>
+        <span v-if="!$v.hesCode.required && $v.hesCode.$anyDirty"
+          >HES Code is required</span
+        >
+        <span v-if="!$v.hesCode.hesCodeValidation"
+          >Please enter HES code in valid format.
+          <div>Ex: A1C1-1234-12</div>
+        </span>
       </div>
 
       <!-- Turkish Citizen Number Label & Input -->
@@ -104,6 +118,12 @@
             type="number"
           />
         </div>
+        <div v-if="!$v.tcNumber.required && $v.tcNumber.$anyDirty">
+          *TC Number is required
+        </div>
+        <div v-if="!$v.tcNumber.checkTcNumber && $v.tcNumber.$anyDirty">
+          *Please enter valid TC Number.
+        </div>
       </div>
 
       <!-- Phone Number Label & Input -->
@@ -118,6 +138,12 @@
             class="form__input"
             v-model.trim.lazy="$v.phoneNumber.$model"
           />
+        </div>
+        <div v-if="!$v.phoneNumber.required && $v.phoneNumber.$anyDirty">
+          *Phone Number is required
+        </div>
+        <div v-if="!$v.phoneNumber.minLength || !$v.phoneNumber.maxLength">
+          *Please enter valid Phone Number without starting with 0.
         </div>
       </div>
 
