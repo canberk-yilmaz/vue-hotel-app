@@ -1,13 +1,10 @@
 <template>
-  <b-nav
-    id="nav"
-    class="navbar navbar-expand-lg ftco-navbar-light container d-flex"
-  >
+  <b-nav id="nav" class="navbar navbar-expand-lg ftco-navbar-light d-flex">
     <div class="align-middle">
-      <div class="logo text-center align-middle">Hotel App</div>
+      <div class="logo ml-4 text-center align-middle">Hotel App</div>
     </div>
     <div class="container"></div>
-    <ul class="nav-links align-items-center">
+    <ul class="nav-links align-items-center mr-4">
       <li class="links">
         <router-link to="/">Home</router-link>
       </li>
@@ -69,6 +66,7 @@ export default {
   border-bottom: 1px solid grey;
   position: sticky;
   z-index: 999;
+  padding: 0;
 }
 
 #nav a.router-link-exact-active {
@@ -80,11 +78,11 @@ export default {
 .links {
   padding-right: 20px;
   list-style: none;
-  font-size: 1.5rem;
+  font-size: 1rem !important;
 }
 .links:hover {
   text-decoration: underline;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .logo {
   font-size: 1.5rem;
