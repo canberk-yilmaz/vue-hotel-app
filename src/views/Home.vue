@@ -1,18 +1,67 @@
 <template>
-  <div>
-    <div class="mt-0 banner-container">
-      <img class="banner" src="@/assets/hotel-banner.jpg" alt="" />
-    </div>
+  <div class="home">
+    <!-- <div class="mt-0 banner-container">
+      <img class="banner" src="@/assets/hotel-banner.jpg" alt="hotel-banner" />
+    </div> -->
     <b-container class="hotels">
       <div class="hotel-container" v-for="hotel in hotels" :key="hotel.id">
-        <div class="img-container">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-4">
+              <img
+                class="img-fluid"
+                :src="require(`@/assets/${hotel.images[0]}`)"
+                :alt="hotel.name"
+              />
+            </div>
+            <div class="col-md-8">
+              <h2 class="card-title mt-3">{{ hotel.name }}</h2>
+              <p>{{ hotel.locationCity }}</p>
+              <p>{{ hotel.locationCountry }}</p>
+              <button>
+                <router-link
+                  :to="{
+                    name: 'HotelDetails',
+                    params: { id: hotel.id },
+                  }"
+                >
+                  <div class="btn">View Hotel</div>
+                </router-link>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div>
+          <b-card
+            title="Card Title"
+            :img-src="require(`@/assets/${hotel.images[0]}`)"
+            img-alt="Image"
+            img-left
+            tag="article"
+            style="max-width: 20rem"
+            class="mb-2"
+          >
+            <b-card-text>
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </b-card-text>
+
+            <b-button href="#" variant="primary">Go somewhere</b-button>
+          </b-card>
+        </div> -->
+        <!-- <div class="img-container">
           <router-link
             :to="{
               name: 'HotelDetails',
               params: { id: hotel.id },
             }"
           >
-            <img class="hotel-image" :src="hotel.image" :alt="hotel.id" />
+            <img
+              class="hotel-image"
+              :src="require(`@/assets/${hotel.images[0]}`)"
+              :alt="hotel.id"
+            />
           </router-link>
         </div>
         <router-link
@@ -33,7 +82,7 @@
           >
             <div class="btn">View Hotel</div>
           </router-link>
-        </button>
+        </button> -->
       </div>
     </b-container>
   </div>
@@ -71,41 +120,30 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: pink;
-  border-radius: 50px;
-}
-
-.img-container {
-  width: 390px;
-  height: 293px;
-  background-color: transparent;
-  position: relative;
-  z-index: 1;
-}
-.hotel-image {
-  position: relative;
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 50px;
-  padding: 15px;
-}
-
-.name {
-  color: white;
+  background-color: red;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .banner {
-  width: 100vw;
   opacity: 50%;
   background-color: white;
   color: white;
+  display: block;
+  width: 100%;
 }
 
 .banner-container {
   background-color: white;
+  display: block;
+}
+.container {
+  margin-top: 5rem;
+  height: 50%;
 }
 
-.container {
-  transform: translate(0, -20rem);
+.home {
+  background-image: linear-gradient(white, grey);
+  background-repeat: repeat;
 }
 </style>
