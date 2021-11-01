@@ -87,6 +87,9 @@ const validationMixin = {
       email,
       required,
     },
+    rooms: {
+      minValue: minValue(1),
+    },
   },
   created() {},
 };

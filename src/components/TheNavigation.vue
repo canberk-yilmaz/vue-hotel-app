@@ -1,7 +1,9 @@
 <template>
   <b-nav id="nav" class="navbar navbar-expand-lg ftco-navbar-light d-flex">
     <div class="align-middle">
-      <div class="logo ml-4 text-center align-middle">Hotel App</div>
+      <router-link class="logo ml-4 d-flex align-middle" to="/"
+        >Hotel App</router-link
+      >
     </div>
     <div class="container"></div>
     <ul class="nav-links align-items-center mr-4">
@@ -78,14 +80,14 @@ export default {
 .links {
   padding-right: 20px;
   list-style: none;
-  font-size: 1rem !important;
+  font-size: 2rem !important;
 }
 .links:hover {
   text-decoration: underline;
   font-size: 1.5rem;
 }
 .logo {
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   color: #00a2ff;
   font-weight: bold;
 }

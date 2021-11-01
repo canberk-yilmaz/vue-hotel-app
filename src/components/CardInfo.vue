@@ -120,18 +120,14 @@
         </div>
       </div>
     </div>
-    <Payment />
   </div>
 </template>
 
 <script>
 import validationMixin from "@/mixins/validationMixin.js";
-import Payment from "./Payment.vue";
 
 export default {
-  components: {
-    Payment,
-  },
+  components: {},
   data() {
     return {
       firstName: null,

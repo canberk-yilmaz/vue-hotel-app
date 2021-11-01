@@ -121,9 +121,9 @@
         <div v-if="!$v.tcNumber.required && $v.tcNumber.$anyDirty">
           *TC Number is required
         </div>
-        <div v-if="!$v.tcNumber.checkTcNumber && $v.tcNumber.$anyDirty">
+        <!-- <div v-if="!$v.tcNumber.checkTcNumber && $v.tcNumber.$anyDirty">
           *Please enter valid TC Number.
-        </div>
+        </div> !TODO: FIX-HERE-->
       </div>
 
       <!-- Phone Number Label & Input -->

@@ -14,18 +14,29 @@
                 :alt="hotel.name"
               />
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
               <h2 class="card-title mt-3">{{ hotel.name }}</h2>
               <p>{{ hotel.locationCity }}</p>
               <p>{{ hotel.locationCountry }}</p>
-              <button>
+              <div>
+                <b-form-rating
+                  class="d-inline-flex"
+                  v-model="value"
+                  no-border
+                  readonly
+                ></b-form-rating>
+              </div>
+            </div>
+            <div class="col-md-2 d-flex align-center justify-content-center">
+              <button class="d-flex text-center" align-v="center">
                 <router-link
+                  class="d-flex"
                   :to="{
                     name: 'HotelDetails',
                     params: { id: hotel.id },
                   }"
                 >
-                  <div class="btn">View Hotel</div>
+                  <div class="btn" align-v="center">View Hotel</div>
                 </router-link>
               </button>
             </div>
@@ -95,6 +106,7 @@ export default {
   data() {
     return {
       hotels: data.hotels,
+      value: 5,
     };
   },
 };
@@ -102,10 +114,10 @@ export default {
 
 <style scoped>
 .hotels {
-  background-color: salmon;
-  border-radius: 50px;
+  background-color: rgb(191, 199, 243);
+  border-radius: 2rem;
   height: 100%;
-  padding: 0.5em;
+  padding: 1em;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
@@ -114,36 +126,44 @@ export default {
 }
 
 .hotel-container {
-  margin: 1rem;
+  margin: 0.5rem;
   width: 100%;
   height: 20%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  background-color: red;
-  border-radius: 10px;
+  background-color: beige;
+  border-radius: 1rem;
   padding: 5px;
+  margin-bottom: 4rem;
 }
 
-.banner {
-  opacity: 50%;
-  background-color: white;
-  color: white;
-  display: block;
-  width: 100%;
-}
-
-.banner-container {
-  background-color: white;
-  display: block;
-}
 .container {
-  margin-top: 5rem;
-  height: 50%;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
 }
 
 .home {
-  background-image: linear-gradient(white, grey);
+  background-image: linear-gradient(rgb(251, 252, 255), rgb(191, 199, 243));
   background-repeat: repeat;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  border-radius: 2rem;
+  background-color: transparent;
+}
+
+.b-rating {
+  padding: 0;
+}
+
+img {
+  border-radius: 1rem;
 }
 </style>

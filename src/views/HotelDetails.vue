@@ -31,17 +31,6 @@
           </div>
 
           <!-- CAROUSEL END -->
-
-          <div class="hotel-details">
-            <b-badge class="rating" variant="primary">
-              Rating: <b-badge variant="light">{{ hotel.rating }}</b-badge>
-            </b-badge>
-
-            <div class="d-flex align-left mt-5">{{ hotel.summary }}</div>
-            <p>
-              {{ hotel.location }}
-            </p>
-          </div>
         </div>
         <div class="sticky p-lg-0 col-lg-4 book-section">
           <h2>Book Now</h2>
@@ -51,33 +40,66 @@
               id="checkIn"
               v-model="checkInDate"
               class="mb-2"
+              :min="this.now"
             ></b-form-datepicker>
           </div>
 
-          <div>
+          <div v-if="this.checkInDate">
             <label for="checkOutDate">Check Out</label>
             <b-form-datepicker
               id="checkOut"
               v-model="checkOutDate"
               class="mb-2"
+              :min="this.checkInDate"
             ></b-form-datepicker>
           </div>
 
-          <div class="rooms-container text-align mb-3">
-            <label class="rooms-label" for="rooms">Rooms:</label>
-            <input class="room-input" v-model="rooms" disabled />
+          <div class="people-container text-align mb-3">
+            <label class="people-label" for="rooms">People:</label>
+            <input
+              class="people-input"
+              :people="people"
+              v-model="people"
+              disabled
+            />
             <div>
-              <button class="room-btn mr-2" @click="rooms--">-</button>
-              <button class="room-btn" @click="rooms++">+</button>
+              <button
+                v-if="people > 0"
+                class="people-btn mr-2"
+                @click="people--"
+              >
+                -
+              </button>
+              <button class="people-btn" @click="people++">+</button>
             </div>
           </div>
+
+          <div class="totalPayment" v-if="totalPayment">
+            Total Payment: ${{ totalPayment }}
+          </div>
           <div class="bookNow d-flex align-center justify-content-center">
-            <button>
-              <router-link to="/reservation">Book Now</router-link>
+            <button v-if="totalPayment">
+              <router-link
+                :to="{
+                  name: 'Reservation',
+                  params: { peopleCount: this.people },
+                }"
+                >Book Now</router-link
+              >
             </button>
           </div>
-          <div class="totalPayment" v-if="totalPayment">
-            Total Payment: $ {{ totalPayment }}
+        </div>
+        <div>
+          <div class="hotel-details text-center">
+            <b-badge class="rating" variant="primary">
+              Rating: <b-badge variant="light">{{ hotel.rating }}</b-badge>
+            </b-badge>
+            <div class="h1 mt-5">
+              {{ hotel.locationCity }} / {{ hotel.locationCountry }}
+            </div>
+            <div class="d-flex align-leftcontainer mr-4 ml-4 p-5 text-left">
+              {{ hotel.summary }}
+            </div>
           </div>
         </div>
       </div>
@@ -86,8 +108,11 @@
 </template>
 <script>
 import data from "@/data.json";
+import validationMixin from "@/mixins/validationMixin.js";
+
 export default {
   components: {},
+  mixins: [validationMixin],
   props: {
     name: {
       type: String,
@@ -98,10 +123,12 @@ export default {
       hotelId: this.$route.params.id,
       checkInDate: null,
       checkOutDate: null,
-      rooms: 0,
+      people: 0,
       slide: 0,
+      minDate: null,
     };
   },
+
   computed: {
     hotel() {
       return data.hotels.find((hotel) => hotel.id === this.hotelId);
@@ -109,9 +136,13 @@ export default {
     totalPayment() {
       return (
         this.calculateDays(this.checkInDate, this.checkOutDate) *
-        this.rooms *
-        1000
+        this.people *
+        this.hotel.price
       );
+    },
+    now() {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate());
     },
   },
   methods: {
@@ -125,6 +156,14 @@ export default {
     },
     onSlideEnd() {
       this.sliding = false;
+    },
+    sendToForm() {
+      this.$router.push({
+        name: " Reservation",
+        params: {
+          peopleCount: this.people,
+        },
+      });
     },
   },
 };
@@ -173,12 +212,12 @@ p {
   text-decoration: none;
 }
 
-.rooms-container {
+.people-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.room-btn {
+.people-btn {
   background-color: #2c5dff;
   border: none;
   color: white;
@@ -189,7 +228,7 @@ p {
   width: 2rem;
 }
 
-.rooms-label {
+.people-label {
   margin: 0;
 }
 
@@ -197,13 +236,21 @@ p {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
+  border: 1px solid black;
+  border-radius: 2rem;
+  margin-bottom: 1.5rem;
 }
 .bookNow {
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.bookNow:hover {
   font-size: 2rem;
   color: #2c3e50;
 }
 
-.room-input {
+.people-input {
   width: 3rem;
   text-align: center;
 }
