@@ -164,6 +164,13 @@
     <div class="container">
       <!-- Button trigger modal -->
       <b-button
+        v-if="
+          $v.cvcLength.$anyDirty &&
+          !$v.cvcLength.$error &&
+          !$v.cardMonth.$error &&
+          !$v.cardYear.$error &&
+          !$v.fullName.$error
+        "
         id="show-btn"
         @click="
           redirect();

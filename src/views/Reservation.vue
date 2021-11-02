@@ -75,7 +75,9 @@ export default {
       // for (let i = 0; i < this.people; i++) {
       //   console.log(this.$refs.form[i].$v.$invalid);
       // }
-      if (!this.$refs.form.every((form) => form.$v.$anyError)) {
+      if (
+        this.$refs.form.every((form) => !form.$v.$anyError && form.$v.$anyDirty)
+      ) {
         console.log("its valid");
         this.$router.push("/payment");
       } else {
