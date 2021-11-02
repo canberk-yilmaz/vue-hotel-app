@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "JOALI Maldives",
-      "price": "5605",
+      "price": "600",
       "images": [
         "hotel-1/1.jpg",
         "hotel-1/2.jpg",
@@ -19,7 +19,7 @@
     {
       "id": "2",
       "name": "Lux Belle Mare Resort & Villas",
-      "price": "150",
+      "price": "750",
       "images": [
         "hotel-2/1.jpg",
         "hotel-2/2.jpg",
@@ -35,7 +35,7 @@
     {
       "id": "3",
       "name": "Renaissance Cancun Resort & Marina",
-      "price": "175",
+      "price": "800",
       "images": [
         "hotel-3/1.jpg",
         "hotel-3/2.jpg",
@@ -51,7 +51,7 @@
     {
       "id": "4",
       "name": "Trisara Villas & Residences",
-      "price": "200",
+      "price": "500",
       "images": [
         "hotel-4/1.jpg",
         "hotel-4/2.jpg",
