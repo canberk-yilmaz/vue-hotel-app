@@ -28,17 +28,17 @@
               </div>
             </div>
             <div class="col-md-2 d-flex align-center justify-content-center">
-              <button class="d-flex text-center" align-v="center">
-                <router-link
-                  class="d-flex"
-                  :to="{
-                    name: 'HotelDetails',
-                    params: { id: hotel.id },
-                  }"
-                >
+              <router-link
+                class="d-flex"
+                :to="{
+                  name: 'HotelDetails',
+                  params: { id: hotel.id },
+                }"
+              >
+                <button class="text-center" align-v="center">
                   <div class="btn" align-v="center">View Hotel</div>
-                </router-link>
-              </button>
+                </button>
+              </router-link>
             </div>
           </div>
         </div>

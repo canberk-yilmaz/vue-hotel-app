@@ -1,10 +1,8 @@
 <template>
   <b-nav id="nav" class="navbar navbar-expand-lg ftco-navbar-light d-flex">
-    <div class="align-middle">
-      <router-link class="logo ml-4 d-flex align-middle" to="/"
-        >Hotel App</router-link
-      >
-    </div>
+    <router-link class="logo ml-4" to="/">
+      <div class="align-middle">Hotel App</div></router-link
+    >
     <div class="container"></div>
     <ul class="nav-links align-items-center mr-4">
       <li class="links">
@@ -29,9 +27,6 @@
           >
         </b-dropdown-item>
       </b-nav-item-dropdown>
-      <li class="links">
-        <router-link to="/about">About</router-link>
-      </li>
       <li class="links">
         <router-link to="/payment">Payment</router-link>
       </li>
@@ -60,6 +55,7 @@ export default {
 <style scoped>
 #nav {
   display: flex;
+  white-space: nowrap;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -87,7 +83,7 @@ export default {
   font-size: 1.5rem;
 }
 .logo {
-  font-size: 3.5rem;
+  font-size: 2rem;
   color: #00a2ff;
   font-weight: bold;
 }

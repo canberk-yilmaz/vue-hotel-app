@@ -44,6 +44,11 @@
             ></b-form-datepicker>
           </div>
 
+          <div v-if="!this.checkInDate">
+            <label for="checkOutDate">Check Out</label>
+            <b-form-datepicker disabled class="mb-2"></b-form-datepicker>
+          </div>
+
           <div v-if="this.checkInDate">
             <label for="checkOutDate">Check Out</label>
             <b-form-datepicker
@@ -73,7 +78,9 @@
               <button class="people-btn" @click="people++">+</button>
             </div>
           </div>
-
+          <div v-if="!totalPayment">
+            <h3>Choose Date and People to see the price.</h3>
+          </div>
           <div class="totalPayment" v-if="totalPayment">
             Total Payment: ${{ totalPayment }}
           </div>
@@ -82,7 +89,10 @@
               <router-link
                 :to="{
                   name: 'Reservation',
-                  params: { peopleCount: this.people },
+                  params: {
+                    peopleCount: this.people,
+                    totalPayment: this.totalPayment,
+                  },
                 }"
                 >Book Now</router-link
               >
