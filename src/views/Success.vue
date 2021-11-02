@@ -1,14 +1,22 @@
 <template>
   <div class="mainBox">
     <div class="container success-box">
+      <div class="success-text">Payment Successful !</div>
       <div class="success-text">Have a wonderful holiday !</div>
       <div class="success-text">See you soon !</div>
+      <div class="success-text">You will be redirect to home page</div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    setTimeout(() => {
+      this.$router.push("/");
+    }, 5000);
+  },
+};
 </script>
 
 <style scoped>
