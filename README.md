@@ -17,7 +17,7 @@
     <a href="https://github.com/canberk-yilmaz/vue-hotel-app"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/canberk-yilmaz/vue-hotel-app">View Demo</a>
+    <a href="https://hotel-app-vue-canberkyilmaz.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/canberk-yilmaz/vue-hotel-app/issues">Report Bug</a>
     ·
