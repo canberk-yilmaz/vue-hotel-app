@@ -1,3 +1,4 @@
+<!-- Success page, after payment user redirect here -->
 <template>
   <div class="mainBox">
     <div class="container success-box">
@@ -11,6 +12,7 @@
 
 <script>
 export default {
+  // after 5 seconds user redirect to home
   mounted() {
     setTimeout(() => {
       this.$router.push("/");

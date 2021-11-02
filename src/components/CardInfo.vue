@@ -111,14 +111,33 @@
                 class="card__front-logo card__logo"
                 src="https://seeklogo.com/images/V/visa-logo-6F4057663D-seeklogo.com.png"
               />
-              <p class="card_numer">**** **** **** ****</p>
+              <p v-if="this.$v.cardLength.$model" class="card_numer">
+                {{ this.$v.cardLength.$model.slice(0, 4) }}
+                {{ this.$v.cardLength.$model.slice(4, 8) }}
+                {{ this.$v.cardLength.$model.slice(8, 12) }}
+                {{ this.$v.cardLength.$model.slice(12, 16) }}
+              </p>
+              <p v-show="!this.$v.cardLength.$model" class="card_numer">
+                1234 1234 1234 6258
+              </p>
               <div class="card__space-75">
                 <span class="card__label">Card holder</span>
-                <p class="card__info">John Doe</p>
+                <p v-if="this.$v.fullName.$model" class="card__info">
+                  {{ this.$v.fullName.$model }}
+                </p>
+                <p v-if="!this.$v.fullName.$model" class="card__info">
+                  John Doe
+                </p>
               </div>
               <div class="card__space-25">
                 <span class="card__label">Expires</span>
-                <p class="card__info">**/**</p>
+                <p v-if="!this.$v.cardMonth.$model" class="card__info">**/**</p>
+                <p
+                  v-if="this.$v.cardMonth.$model || this.$v.cardYear.$model"
+                  class="card__info"
+                >
+                  {{ this.$v.cardMonth.$model }}/{{ this.$v.cardYear.$model }}
+                </p>
               </div>
             </div>
 
@@ -126,7 +145,15 @@
               <div class="card__black-line"></div>
               <div class="card__back-content">
                 <div class="card__secret">
-                  <p class="card__secret--last">420</p>
+                  <p
+                    v-if="!this.$v.cvcLength.$model"
+                    class="card__secret--last"
+                  >
+                    420
+                  </p>
+                  <p v-if="this.$v.cvcLength.$model" class="card__secret--last">
+                    {{ this.$v.cvcLength.$model }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -167,6 +194,9 @@
           <div class="d-flex justify-content-center">Payment Processing</div>
         </div>
         <div v-show="paymentCompleted">
+          <div class="d-flex justify-content-center success-modal">
+            Thank You Mr. {{ this.$v.fullName.$model | capitalizeText }}
+          </div>
           <div class="d-flex justify-content-center">Payment Succeed</div>
         </div>
       </b-modal>
@@ -192,11 +222,12 @@ export default {
     };
   },
   mixins: [validationMixin],
+
   methods: {
     redirect() {
       setTimeout(() => {
         this.$router.push("/success");
-      }, 10000);
+      }, 12000);
     },
 
     showPayment() {
@@ -209,7 +240,7 @@ export default {
 
       setTimeout(function () {
         self.$bvModal.hide("my-modal");
-      }, 10000);
+      }, 12000);
     },
 
     paymentLoading() {
@@ -364,7 +395,7 @@ body {
   font-size: 20px;
   letter-spacing: 2px;
   color: #fff;
-  text-align: center;
+  text-align: left;
   margin-bottom: 20px;
   margin-top: 20px;
 }

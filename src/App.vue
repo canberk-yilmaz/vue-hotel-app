@@ -2,12 +2,14 @@
   <div id="app">
     <div class="appContainer">
       <div id="nav">
+        <!-- NavBar Routes add as a component -->
         <TheNavigation />
       </div>
       <router-view :key="$route.path" />
     </div>
   </div>
 </template>
+
 <script>
 import TheNavigation from "@/components/TheNavigation.vue";
 
@@ -31,9 +33,5 @@ export default {
 #nav a {
   font-weight: bold;
   color: #502c2c;
-}
-
-#nav a.router-link-exact-active {
-  color: #2c5dff;
 }
 </style>

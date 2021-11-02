@@ -1,3 +1,4 @@
+// Validators imported
 import {
   required,
   minLength,
@@ -18,16 +19,6 @@ import {
 // First number shouldn't be 0.
 // Sum of 1st,3rd,5th,7th and 9th multiply by 7 and sum of 2nd,4th,6th and 8th subtract from the first calculation. This calculation divide by 10 and final result gives us the 10th number.
 //Sum of first 10 digits divided by 10 gives us the 11th digit.
-
-export const filters = {
-  filters: {
-    capitalize: (value) => {
-      if (!value) return "";
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
-    },
-  },
-};
 
 const checkTcNumber = (value) => {
   value = value.toString();
@@ -56,6 +47,7 @@ const checkTcNumber = (value) => {
   return isEleven && isRuleX && isRuleY;
 };
 
+// Hes Code Validation - First and Third character is letter, rest is digits
 const hesCodeValidation = helpers.regex(
   "hesCodeValidation",
   /^[a-zA-Z].[a-zA-Z].-....-../
@@ -103,20 +95,24 @@ const validationMixin = {
         minLength: minLength(2),
         maxValue: maxValue(12),
         required,
+        numeric,
       },
       cardYear: {
         minLength: minLength(2),
         minValue: minValue(20),
         required,
+        numeric,
       },
       cardLength: {
         minLength: minLength(16),
         maxLength: maxLength(16),
         required,
+        numeric,
       },
       cvcLength: {
         minLength: minLength(3),
         required,
+        numeric,
       },
       fullName: {
         required,
@@ -124,6 +120,12 @@ const validationMixin = {
       },
     };
   },
+  filters: {
+    capitalizeText: (value) => {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
+  },
 };
-
 export default validationMixin;

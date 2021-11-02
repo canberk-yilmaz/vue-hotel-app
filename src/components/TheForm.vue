@@ -114,7 +114,7 @@
           <label class="form__label">TC Number</label>
           <b-form-input
             class="form__input"
-            placeholder="12341234123"
+            placeholder="10550594492"
             v-model.trim.lazy="$v.tcNumber.$model"
             type="number"
           />
@@ -149,7 +149,7 @@
         </div>
       </div>
 
-      <!-- Test Code -->
+      <!-- Test Code Used For Seeing on Screen -->
       <!-- <div>
         <li v-for="(item, i) in $v.tcNumber" :key="i">
           {{ (item, i) }} : {{ item }}
@@ -163,6 +163,7 @@
 import validationMixin from "@/mixins/validationMixin.js";
 
 export default {
+  name: "TheForm",
   props: ["formId", "people"],
   data() {
     return {
@@ -177,10 +178,12 @@ export default {
   },
   mixins: [validationMixin],
   methods: {
+    // sets focus on first items first input, firstname0 is the ref of first element
     setFocus() {
       this.$refs.firstName0.focus();
     },
     setNextFocus() {
+      // this function used as sending data to parent, then used for focusing next items input
       this.$emit("setNextFocus", this.formId);
     },
   },

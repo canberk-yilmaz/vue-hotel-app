@@ -8256,6 +8256,11 @@
   "resolved" "https://registry.nlark.com/uuid/download/uuid-3.4.0.tgz"
   "version" "3.4.0"
 
+"v-mask@^2.3.0":
+  "integrity" "sha512-ap7pTtCTvj25CqX4VYXqudCBd0+XvYyhiiLbzWQQR7AMQosJ2+DPu0a94P9stk0EGmGcmYxJaPkFkfjD8hquWQ=="
+  "resolved" "https://registry.npmjs.org/v-mask/-/v-mask-2.3.0.tgz"
+  "version" "2.3.0"
+
 "v8-compile-cache@^2.0.3":
   "integrity" "sha1-LeGWGMZtwkfc+2+ZM4A12CRaLO4="
   "resolved" "https://registry.npm.taobao.org/v8-compile-cache/download/v8-compile-cache-2.3.0.tgz?cache=0&sync_timestamp=1614993892777&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fv8-compile-cache%2Fdownload%2Fv8-compile-cache-2.3.0.tgz"
@@ -8361,6 +8366,11 @@
   "integrity" "sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU="
   "resolved" "https://registry.nlark.com/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
+
+"vue-the-mask@^0.11.1":
+  "integrity" "sha512-UquSfnSWejD0zAfcD+3jJ1chUAkOAyoxya9Lxh9acCRtrlmGcAIvd0cQYraWqKenbuZJUdum+S174atv2AuEHQ=="
+  "resolved" "https://registry.npmjs.org/vue-the-mask/-/vue-the-mask-0.11.1.tgz"
+  "version" "0.11.1"
 
 "vue@^2 || ^3.0.0-0", "vue@^2.5.18", "vue@^2.6.14":
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="

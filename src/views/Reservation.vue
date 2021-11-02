@@ -45,12 +45,15 @@
 
 <script>
 import TheForm from "@/components/TheForm.vue";
+import validationMixin from "@/mixins/validationMixin.js";
 
 export default {
   name: "App",
   components: {
     TheForm,
   },
+  mixins: [validationMixin],
+
   data() {
     return {
       people: this.$route.params.peopleCount,
@@ -72,7 +75,7 @@ export default {
       // for (let i = 0; i < this.people; i++) {
       //   console.log(this.$refs.form[i].$v.$invalid);
       // }
-      if (!this.$refs.form.every((form) => form.$v.$invalid)) {
+      if (!this.$refs.form.every((form) => form.$v.$anyError)) {
         console.log("its valid");
         this.$router.push("/payment");
       } else {

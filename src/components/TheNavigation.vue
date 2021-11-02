@@ -1,18 +1,22 @@
 <template>
-  <b-nav id="nav" class="navbar navbar-expand-lg ftco-navbar-light d-flex">
-    <router-link class="logo ml-4" to="/">
-      <div class="align-middle">Hotel App</div></router-link
+  <!-- Navigations are write here together. -->
+
+  <b-nav
+    id="nav"
+    class="container navbar navbar-expand-lg ftco-navbar-light d-flex"
+  >
+    <!-- basic logo with routing -->
+    <router-link class="logo" to="/">
+      <div class="align-middle text-center">Hotel App</div></router-link
     >
     <div class="container"></div>
-    <ul class="nav-links align-items-center mr-4">
+    <ul class="nav-links align-items-center">
       <li class="links">
+        <!-- home routing -->
         <router-link to="/">Home</router-link>
       </li>
       <b-nav-item-dropdown class="links" text="Hotels" right>
-        <!-- <b-dropdown-item href="#">EN</b-dropdown-item>
-        <b-dropdown-item href="#">ES</b-dropdown-item>
-        <b-dropdown-item href="#">RU</b-dropdown-item>
-        <b-dropdown-item href="#">FA</b-dropdown-item> -->
+        <!-- hotels routing with for loop -->
         <b-dropdown-item
           v-for="hotel in hotels"
           :key="hotel.name"
@@ -27,17 +31,12 @@
           >
         </b-dropdown-item>
       </b-nav-item-dropdown>
-      <li class="links">
-        <router-link to="/payment">Payment</router-link>
-      </li>
-      <li class="links">
-        <router-link to="/reservation">Reservation</router-link>
-      </li>
     </ul>
   </b-nav>
 </template>
 
 <script>
+// data.json file imported
 import data from "@/data.json";
 
 export default {
@@ -68,23 +67,20 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #00a2ff;
+  color: #003274;
 }
 .nav-links {
   display: flex;
 }
 .links {
-  padding-right: 20px;
   list-style: none;
   font-size: 2rem !important;
 }
 .links:hover {
   text-decoration: underline;
-  font-size: 1.5rem;
 }
 .logo {
   font-size: 2rem;
-  color: #00a2ff;
   font-weight: bold;
 }
 .container {

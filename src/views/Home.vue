@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-    <!-- <div class="mt-0 banner-container">
-      <img class="banner" src="@/assets/hotel-banner.jpg" alt="hotel-banner" />
-    </div> -->
     <b-container class="hotels">
+      <!-- Hotel Info Section -->
       <div class="hotel-container" v-for="hotel in hotels" :key="hotel.id">
         <div class="card">
           <div class="row">
             <div class="col-md-4">
+              <!-- First images of hotels show as a cover -->
               <img
                 class="img-fluid"
                 :src="require(`@/assets/${hotel.images[0]}`)"
@@ -15,6 +14,7 @@
               />
             </div>
             <div class="col-md-6">
+              <!-- Hotel Text Section -->
               <h2 class="card-title mt-3">{{ hotel.name }}</h2>
               <p>{{ hotel.locationCity }}</p>
               <p>{{ hotel.locationCountry }}</p>
@@ -28,6 +28,7 @@
               </div>
             </div>
             <div class="col-md-2 d-flex align-center justify-content-center">
+              <!-- Hotel view button -->
               <router-link
                 class="d-flex"
                 :to="{
@@ -35,65 +36,13 @@
                   params: { id: hotel.id },
                 }"
               >
-                <button class="text-center" align-v="center">
+                <b-button class="text-center" align-v="center">
                   <div class="btn" align-v="center">View Hotel</div>
-                </button>
+                </b-button>
               </router-link>
             </div>
           </div>
         </div>
-
-        <!-- <div>
-          <b-card
-            title="Card Title"
-            :img-src="require(`@/assets/${hotel.images[0]}`)"
-            img-alt="Image"
-            img-left
-            tag="article"
-            style="max-width: 20rem"
-            class="mb-2"
-          >
-            <b-card-text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </b-card-text>
-
-            <b-button href="#" variant="primary">Go somewhere</b-button>
-          </b-card>
-        </div> -->
-        <!-- <div class="img-container">
-          <router-link
-            :to="{
-              name: 'HotelDetails',
-              params: { id: hotel.id },
-            }"
-          >
-            <img
-              class="hotel-image"
-              :src="require(`@/assets/${hotel.images[0]}`)"
-              :alt="hotel.id"
-            />
-          </router-link>
-        </div>
-        <router-link
-          :to="{
-            name: 'HotelDetails',
-            params: { id: hotel.id },
-          }"
-        >
-          <h2 class="name">{{ hotel.name }}</h2>
-        </router-link>
-
-        <button>
-          <router-link
-            :to="{
-              name: 'HotelDetails',
-              params: { id: hotel.id },
-            }"
-          >
-            <div class="btn">View Hotel</div>
-          </router-link>
-        </button> -->
       </div>
     </b-container>
   </div>

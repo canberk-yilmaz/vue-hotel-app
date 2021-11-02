@@ -1,6 +1,7 @@
 <template>
   <div class="mt-4">
     <div class="container">
+      <GoBack />
       <h1 class="title">
         {{ hotel.name }}
       </h1>
@@ -33,7 +34,9 @@
           <!-- CAROUSEL END -->
         </div>
         <div class="sticky p-lg-0 col-lg-4 book-section">
+          <!-- Book Now Button -->
           <h2>Book Now</h2>
+          <!-- Date Picker For Check In -->
           <div>
             <label for="checkInDate">Check In</label>
             <b-form-datepicker
@@ -43,12 +46,13 @@
               :min="this.now"
             ></b-form-datepicker>
           </div>
+          <!-- Date Picker For Check Out Disabled -->
 
           <div v-if="!this.checkInDate">
             <label for="checkOutDate">Check Out</label>
             <b-form-datepicker disabled class="mb-2"></b-form-datepicker>
           </div>
-
+          <!-- Date Picker For Check Out (This will be active if Check In Date is chosen) -->
           <div v-if="this.checkInDate">
             <label for="checkOutDate">Check Out</label>
             <b-form-datepicker
@@ -58,7 +62,7 @@
               :min="this.checkInDate"
             ></b-form-datepicker>
           </div>
-
+          <!-- People count / also used for calculating hotel price -->
           <div class="people-container text-align mb-3">
             <label class="people-label" for="rooms">People:</label>
             <input
@@ -68,6 +72,7 @@
               disabled
             />
             <div>
+              <!-- - Button only visible if people > 0 -->
               <button
                 v-if="people > 0"
                 class="people-btn mr-2"
@@ -78,13 +83,16 @@
               <button class="people-btn" @click="people++">+</button>
             </div>
           </div>
+          <!-- If dates and people not chosen this h3 text will shown -->
           <div v-if="!totalPayment">
             <h3>Choose Date and People to see the price.</h3>
           </div>
+          <!-- If there is totalPayment, it will be shown -->
           <div class="totalPayment" v-if="totalPayment">
             Total Payment: ${{ totalPayment }}
           </div>
           <div class="bookNow d-flex align-center justify-content-center">
+            <!-- If there is totalPayment Book Now button will shown -->
             <button v-if="totalPayment">
               <router-link
                 :to="{
@@ -100,6 +108,7 @@
           </div>
         </div>
         <div>
+          <!-- Hotel Info Section -->
           <div class="hotel-details text-center">
             <b-badge class="rating" variant="primary">
               Rating: <b-badge variant="light">{{ hotel.rating }}</b-badge>
@@ -117,11 +126,15 @@
   </div>
 </template>
 <script>
+// Importing
 import data from "@/data.json";
 import validationMixin from "@/mixins/validationMixin.js";
+import GoBack from "@/components/GoBack.vue";
 
+// Component Data
 export default {
-  components: {},
+  name: "hotelDetails",
+  components: { GoBack },
   mixins: [validationMixin],
   props: {
     name: {
@@ -130,6 +143,7 @@ export default {
   },
   data() {
     return {
+      // Hotel Info Base Values
       hotelId: this.$route.params.id,
       checkInDate: null,
       checkOutDate: null,
@@ -141,9 +155,11 @@ export default {
 
   computed: {
     hotel() {
+      // According to this return true data will shown
       return data.hotels.find((hotel) => hotel.id === this.hotelId);
     },
     totalPayment() {
+      // total payment calculated
       return (
         this.calculateDays(this.checkInDate, this.checkOutDate) *
         this.people *
@@ -151,22 +167,26 @@ export default {
       );
     },
     now() {
+      // todays date returned to disable dates before today on datepicker
       const now = new Date();
       return new Date(now.getFullYear(), now.getMonth(), now.getDate());
     },
   },
   methods: {
+    // stay dates calculated with this function 86400000 is the 1 day in milliseconds
     calculateDays(day1, day2) {
       const checkIn = Date.parse(day1);
       const checkOut = Date.parse(day2);
       return (checkOut - checkIn) / 86400000;
     },
+    // Carousel methods
     onSlideStart() {
       this.sliding = true;
     },
     onSlideEnd() {
       this.sliding = false;
     },
+    // Function used to redirect to /reservation with peopleCount data.
     sendToForm() {
       this.$router.push({
         name: " Reservation",
