@@ -12,6 +12,7 @@
             placeholder="John"
             class="form__input"
             v-model.trim="$v.firstName.$model"
+            :ref="'firstName' + this.formId"
           />
         </b-form>
         <div
@@ -121,9 +122,9 @@
         <div v-if="!$v.tcNumber.required && $v.tcNumber.$anyDirty">
           *TC Number is required
         </div>
-        <!-- <div v-if="!$v.tcNumber.checkTcNumber && $v.tcNumber.$anyDirty">
+        <div v-if="!$v.tcNumber.$anyDirty && $v.tcNumber.checkTcNumber">
           *Please enter valid TC Number.
-        </div> !TODO: FIX-HERE-->
+        </div>
       </div>
 
       <!-- Phone Number Label & Input -->
@@ -137,6 +138,7 @@
             placeholder="5321234545"
             class="form__input"
             v-model.trim.lazy="$v.phoneNumber.$model"
+            @keyup.enter="setNextFocus"
           />
         </div>
         <div v-if="!$v.phoneNumber.required && $v.phoneNumber.$anyDirty">
@@ -154,12 +156,6 @@
         </li>
       </div> -->
     </b-row>
-
-    <!-- TODO: -->
-    <!-- 
-    email, firstName, lastName, Age, Hes Code ( custom validation), Turkish Citizen Number (If Turkish) phone number (custom)
-
-   -->
   </div>
 </template>
 
@@ -167,6 +163,7 @@
 import validationMixin from "@/mixins/validationMixin.js";
 
 export default {
+  props: ["formId", "people"],
   data() {
     return {
       firstName: null,
@@ -179,10 +176,23 @@ export default {
     };
   },
   mixins: [validationMixin],
+  methods: {
+    setFocus() {
+      this.$refs.firstName0.focus();
+    },
+    setNextFocus() {
+      this.$emit("setNextFocus", this.formId);
+    },
+  },
+  mounted() {
+    if (this.formId === 0) {
+      this.setFocus();
+    }
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .form-group--error .form__input {
   border: 2px dotted red;
   border-radius: 5px;
