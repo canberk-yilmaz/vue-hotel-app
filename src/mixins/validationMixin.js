@@ -6,6 +6,7 @@ import {
   helpers,
   email,
   numeric,
+  maxValue,
 } from "vuelidate/lib/validators";
 
 // export function hesLetterValidation(value) {
@@ -30,21 +31,28 @@ export const filters = {
 
 const checkTcNumber = (value) => {
   value = value.toString();
+
   let isEleven = /^[0-9]{11}$/.test(value);
   let totalX = 0;
+
   for (let i = 0; i < 10; i++) {
     totalX += Number(value.substr(i, 1));
   }
+
   let isRuleX = totalX % 10 == value.substr(10, 1);
   let totalY1 = 0;
   let totalY2 = 0;
+
   for (let i = 0; i < 10; i += 2) {
     totalY1 += Number(value.substr(i, 1));
   }
+
   for (let i = 1; i < 10; i += 2) {
     totalY2 += Number(value.substr(i, 1));
   }
+
   let isRuleY = (totalY1 * 7 - totalY2) % 10 == value.substr(9, 0);
+
   return isEleven && isRuleX && isRuleY;
 };
 
@@ -54,44 +62,68 @@ const hesCodeValidation = helpers.regex(
 );
 
 const validationMixin = {
-  validations: {
-    firstName: {
-      required,
-      minLength: minLength(3),
-    },
-    lastName: {
-      required,
-      minLength: minLength(2),
-    },
-    age: {
-      minValue: minValue(6),
-      required,
-    },
-    hesCode: {
-      required,
-      hesCodeValidation,
-      minLength: minLength(12),
-      maxLength: maxLength(12),
-    },
-    tcNumber: {
-      required,
-      checkTcNumber,
-      numeric,
-    },
-    phoneNumber: {
-      required,
-      minLength: minLength(10),
-      maxLength: maxLength(10),
-    },
-    email: {
-      email,
-      required,
-    },
-    rooms: {
-      minValue: minValue(1),
-    },
+  validations() {
+    return {
+      firstName: {
+        required,
+        minLength: minLength(3),
+      },
+      lastName: {
+        required,
+        minLength: minLength(2),
+      },
+      age: {
+        minValue: minValue(6),
+        required,
+      },
+      hesCode: {
+        required,
+        hesCodeValidation,
+        minLength: minLength(12),
+        maxLength: maxLength(12),
+      },
+      tcNumber: {
+        required,
+        checkTcNumber,
+        numeric,
+      },
+      phoneNumber: {
+        required,
+        minLength: minLength(10),
+        maxLength: maxLength(10),
+      },
+      email: {
+        email,
+        required,
+      },
+      rooms: {
+        minValue: minValue(1),
+      },
+      cardMonth: {
+        minLength: minLength(2),
+        maxValue: maxValue(12),
+        required,
+      },
+      cardYear: {
+        minLength: minLength(2),
+        minValue: minValue(20),
+        required,
+      },
+      cardLength: {
+        minLength: minLength(16),
+        maxLength: maxLength(16),
+        required,
+      },
+      cvcLength: {
+        minLength: minLength(3),
+        required,
+      },
+      fullName: {
+        required,
+        minLength: minLength(3),
+      },
+    };
   },
-  created() {},
 };
 
 export default validationMixin;
