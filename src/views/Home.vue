@@ -3,17 +3,17 @@
     <b-container class="hotels">
       <!-- Hotel Info Section -->
       <div class="hotel-container" v-for="hotel in hotels" :key="hotel.id">
-        <div class="card">
+        <b-row class="card">
           <div class="row">
-            <div class="col-md-4">
+            <b-col class="col-md-4">
               <!-- First images of hotels show as a cover -->
               <img
-                class="img-fluid"
+                class="img-fluid p-2"
                 :src="require(`@/assets/${hotel.images[0]}`)"
                 :alt="hotel.name"
               />
-            </div>
-            <div class="col-md-6">
+            </b-col>
+            <b-col class="col-md-6">
               <!-- Hotel Text Section -->
               <h2 class="card-title mt-3">{{ hotel.name }}</h2>
               <p>{{ hotel.locationCity }}</p>
@@ -26,23 +26,23 @@
                   readonly
                 ></b-form-rating>
               </div>
-            </div>
-            <div class="col-md-2 d-flex align-center justify-content-center">
+            </b-col>
+            <b-col class="col-md-2 d-flex align-center justify-content-center">
               <!-- Hotel view button -->
               <router-link
-                class="d-flex"
+                class="d-flex mr-2 p-4"
                 :to="{
                   name: 'HotelDetails',
                   params: { id: hotel.id },
                 }"
               >
-                <b-button class="text-center" align-v="center">
-                  <div class="btn" align-v="center">View Hotel</div>
+                <b-button class="text-center btn btn-primary" align-v="center">
+                  View Hotel
                 </b-button>
               </router-link>
-            </div>
+            </b-col>
           </div>
-        </div>
+        </b-row>
       </div>
     </b-container>
   </div>
@@ -101,11 +101,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 button {
-  border-radius: 2rem;
+  border-radius: 1.5rem;
   background-color: transparent;
+  color: #2c3e50;
 }
 
 .b-rating {
@@ -114,5 +117,8 @@ button {
 
 img {
   border-radius: 1rem;
+}
+.card {
+  margin: 8px;
 }
 </style>
