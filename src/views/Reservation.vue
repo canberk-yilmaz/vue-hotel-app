@@ -78,10 +78,7 @@ export default {
       if (
         this.$refs.form.every((form) => !form.$v.$anyError && form.$v.$anyDirty)
       ) {
-        console.log("its valid");
         this.$router.push("/payment");
-      } else {
-        console.log("its not valid");
       }
     },
   },
